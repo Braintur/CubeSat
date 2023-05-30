@@ -18,9 +18,9 @@ for i in range(0, numports):
     
 fig = plt.figure()
 ax = fig.add_subplot()
-xs1=[0]*4400
-ys=list(range(4400))
-zs=list(range(4400))
+xs1=[0]*60
+ys=list(range(60))
+zs=list(range(60))
 
 tzero = time()
 
@@ -31,18 +31,18 @@ def animate(i, xs, ys):
     if len(data)>3:
         temp,lux = data[:-2].split(',')
         tnow = time()- tzero
-        
+        lux = int(lux)/1000
         xs1.append(tnow)
         ys.append(temp)
         zs.append(lux)
         
         ax.clear()
-        plt.plot(xs, ys, label="Pollutants in the air (PPM)")
-        plt.plot(xs, zs, label="Light (lux)")
+        plt.plot(xs, ys, label="Temperature (C)")
+        plt.plot(xs, zs, label="Light (kilolux)")
         plt.legend()
         
         plt.xticks(rotation=45, ha='right')
-        plt.yticks(range(0,4400,100))
+        plt.yticks(range(0,60,10))
         
     
 ani = animation.FuncAnimation(fig, animate, fargs=(xs1, ys))
