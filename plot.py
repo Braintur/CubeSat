@@ -17,11 +17,9 @@ for i in range(0, numports):
         
     
 fig = plt.figure()
-ax = fig.add_subplot(2,1,1)
-bx = fig.add_subplot(2,1,2)
-xs1=[0]*10
-ys=list(range(10))
-xs2=[0]*4400
+ax = fig.add_subplot()
+xs1=[0]*4400
+ys=list(range(4400))
 zs=list(range(4400))
 
 tzero = time()
@@ -35,18 +33,17 @@ def animate(i, xs, ys):
         tnow = time()- tzero
         
         xs1.append(tnow)
-        xs2.append(tnow)
         ys.append(temp)
         zs.append(lux)
         
         ax.clear()
-        bx.clear()
-        ax.plot(xs1, ys)
-        bx.plot(xs2, zs)
+        plt.plot(xs, ys, label="Pollutants in the air (PPM)")
+        plt.plot(xs, zs, label="Light (lux)")
+        plt.legend()
         
         plt.xticks(rotation=45, ha='right')
-        plt.yticks(range(0,4400,400))
+        plt.yticks(range(0,4400,100))
         
     
-ani = animation.FuncAnimation(fig, animate, fargs=(xs1, ys), interval=1000)
+ani = animation.FuncAnimation(fig, animate, fargs=(xs1, ys))
 plt.show()
