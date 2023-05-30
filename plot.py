@@ -19,10 +19,10 @@ for i in range(0, numports):
 fig = plt.figure()
 ax = fig.add_subplot(2,1,1)
 bx = fig.add_subplot(2,1,2)
-xs1=[0]*40
-ys=list(range(40))
-xs2=[0]*2000
-zs=list(range(2000))
+xs1=[0]*10
+ys=list(range(10))
+xs2=[0]*4400
+zs=list(range(4400))
 
 tzero = time()
 
@@ -45,11 +45,8 @@ def animate(i, xs, ys):
         bx.plot(xs2, zs)
         
         plt.xticks(rotation=45, ha='right')
-        plt.subplots_adjust(bottom=0.30)
-        plt.title("Temp over time")
-        plt.ylabel('Temperature')
-        plt.xlabel('Time')
-        plt.yticks([0,200,400,600,800,100,1200,1400,1600,1800,2000])
+        plt.yticks(range(0,4400,400))
+        
     
 ani = animation.FuncAnimation(fig, animate, fargs=(xs1, ys), interval=1000)
 plt.show()
